@@ -36,6 +36,10 @@ namespace cinder
 			solverDesc.maxParticles = particleCount;
 			solverDesc.maxDiffuseParticles = 0;
 
+			if( mSolver ) {
+				NvFlexDestroySolver( mSolver );
+			}
+
 			mSolver = NvFlexCreateSolver( mLibrary, &solverDesc );
 
 			// setup some decent default params

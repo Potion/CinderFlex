@@ -49,6 +49,8 @@ namespace cinder
 
 				NvFlexLibrary* getLibrary() { return mLibrary; }
 
+				NvFlexSolver* getSolver() { return mSolver; }
+
 				const NvFlexTimers& getTimers() const { return mTimers; }
 		};
 
