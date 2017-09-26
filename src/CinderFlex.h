@@ -20,14 +20,13 @@ namespace cinder
 		{
 				NvFlexLibrary* mLibrary;
 				NvFlexSolver* mSolver;
-				NvFlexTimers mTimers;
 				NvFlexParams mParams;
 
 			public:
 				CinderFlex();
 
 				// initialize flex
-				void init();
+				void init( unsigned int particleCount );
 
 				// setup a solver with a given number of particles
 				void setupParticles( unsigned int particleCount, unsigned int diffuseParticleCount );
@@ -50,8 +49,6 @@ namespace cinder
 				NvFlexLibrary* getLibrary() { return mLibrary; }
 
 				NvFlexSolver* getSolver() { return mSolver; }
-
-				const NvFlexTimers& getTimers() const { return mTimers; }
 		};
 
 

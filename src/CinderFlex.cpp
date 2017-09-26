@@ -20,28 +20,28 @@ namespace cinder
 		{
 			mLibrary = nullptr;
 			mSolver = nullptr;
-			memset( &mTimers, 0, sizeof( mTimers ) );
 		}
 
-		void CinderFlex::init()
+		void CinderFlex::init( unsigned int particleCount )
 		{
 			mLibrary = NvFlexInit();
-		}
 
-		void CinderFlex::setupParticles( unsigned int particleCount, unsigned int diffuseParticleCount )
-		{
 			// create new solver
 			NvFlexSolverDesc solverDesc;
 			NvFlexSetSolverDescDefaults( &solverDesc );
 			solverDesc.maxParticles = particleCount;
 			solverDesc.maxDiffuseParticles = 0;
+			solverDesc.featureMode = eNvFlexFeatureModeDefault;
 
 			if( mSolver ) {
 				NvFlexDestroySolver( mSolver );
 			}
 
 			mSolver = NvFlexCreateSolver( mLibrary, &solverDesc );
+		}
 
+		void CinderFlex::setupParticles( unsigned int particleCount, unsigned int diffuseParticleCount )
+		{
 			// setup some decent default params
 			float particleSize = 0.1f;
 			mParams.gravity[0] = 0.0f;
@@ -91,7 +91,7 @@ namespace cinder
 		void CinderFlex::update( float elapsed )
 		{
 			// tick solver
-			NvFlexUpdateSolver( mSolver, elapsed, 1, NULL ); // &mTimers);
+			NvFlexUpdateSolver( mSolver, elapsed, 1, false );
 		}
 
 		void CinderFlex::setParticles( NvFlexBuffer* positions, NvFlexBuffer* velocities, NvFlexBuffer* phases, unsigned int particleCount, bool fluid )
