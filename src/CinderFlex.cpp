@@ -22,10 +22,13 @@ namespace cinder
 			mSolver = nullptr;
 		}
 
-		void CinderFlex::init( unsigned int particleCount )
+		void CinderFlex::init()
 		{
 			mLibrary = NvFlexInit();
+		}
 
+		void CinderFlex::setupParticles( unsigned int particleCount, unsigned int diffuseParticleCount )
+		{
 			// create new solver
 			NvFlexSolverDesc solverDesc;
 			NvFlexSetSolverDescDefaults( &solverDesc );
@@ -38,10 +41,7 @@ namespace cinder
 			}
 
 			mSolver = NvFlexCreateSolver( mLibrary, &solverDesc );
-		}
 
-		void CinderFlex::setupParticles( unsigned int particleCount, unsigned int diffuseParticleCount )
-		{
 			// setup some decent default params
 			float particleSize = 0.1f;
 			mParams.gravity[0] = 0.0f;

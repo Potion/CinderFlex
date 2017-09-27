@@ -26,7 +26,7 @@ namespace cinder
 				CinderFlex();
 
 				// initialize flex
-				void init( unsigned int particleCount );
+				void init();
 
 				// setup a solver with a given number of particles
 				void setupParticles( unsigned int particleCount, unsigned int diffuseParticleCount );
